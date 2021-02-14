@@ -3,7 +3,12 @@ import React, { useState } from "react";
 import { ReactComponent as ChevronDown } from "../../assets/icons/chevron-down.svg";
 import "./dropdown.styles.scss";
 
-const Dropdown = ({ defaultElement = 0, label = "", elements }) => {
+const Dropdown = ({
+  defaultElement = 0,
+  label = "",
+  elements,
+  ...otherProps
+}) => {
   const [toggled, setToggled] = useState(false);
   const [selected, setSelected] = useState(defaultElement);
 
@@ -17,7 +22,7 @@ const Dropdown = ({ defaultElement = 0, label = "", elements }) => {
   };
 
   return (
-    <div className="dropdown">
+    <div className="dropdown" {...otherProps}>
       <div className="main" onClick={handleDropdownClick}>
         <div className="main-inner">
           <div className="label">{label}</div>
