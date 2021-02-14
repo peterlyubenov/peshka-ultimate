@@ -1,0 +1,29 @@
+.input-number {
+  display: inline-block;
+  width: 10em;
+
+  input {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  .buttons {
+    svg {
+      width: 0.8em;
+      fill: var(--textColor);
+    }
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 7em;
+    padding: 1.4em;
+    user-select: none;
+
+    .disabled svg {
+      fill: var(--textColorLight);
+    }
+  }
+}
