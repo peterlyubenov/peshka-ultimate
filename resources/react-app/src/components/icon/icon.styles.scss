@@ -1,0 +1,29 @@
+@import "../../assets/variables";
+.icon {
+  display: inline;
+  margin: 0 1em;
+  svg {
+    fill: var(--textColor);
+    width: 24px;
+
+    -webkit-filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16));
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16));
+  }
+
+  margin-top: 0;
+
+  &.with-notifications {
+    margin-top: -6px;
+  }
+
+  .dot {
+    $size: 6px;
+    width: $size;
+    height: $size;
+    border-radius: $size/2;
+    background-color: $orange;
+    position: relative;
+    top: 6px;
+    left: 16px;
+  }
+}
