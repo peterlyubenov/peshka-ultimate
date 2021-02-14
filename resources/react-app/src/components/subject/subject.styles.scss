@@ -1,0 +1,45 @@
+@import "../../assets/variables";
+
+.subject {
+  padding: 20px 30px;
+  background-color: var(--componentBackgroundColor);
+  box-shadow: $shadow;
+  border-radius: 26px;
+  font-weight: bold;
+  max-width: 500px;
+  color: var(--textColor);
+  .subject-wrapper {
+    display: flex;
+    font-weight: 18px;
+
+    .time {
+      width: 50px;
+      font-weight: bold;
+      color: $blue;
+    }
+
+    .subject-line {
+      color: var(--textColor);
+
+      .lecturer {
+        font-size: 12px;
+        font-weight: normal;
+        color: var(--textColorLight);
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: -10px;
+
+    .label {
+      font-size: 12px;
+      font-weight: normal;
+      color: var(--textColorLight);
+    }
+  }
+}
