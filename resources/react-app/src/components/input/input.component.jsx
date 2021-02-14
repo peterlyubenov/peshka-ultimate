@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./input.styles.scss";
 
-const Input = ({ ...props }) => <input className="input" {...props}></input>;
+class Input extends React.Component {
+  handleChange = (event) => {
+    this.props.onValueChange(event.target.value);
+  };
+
+  render() {
+    return (
+      <input
+        className="input"
+        onChange={this.handleChange}
+        {...this.props}
+      ></input>
+    );
+  }
+}
 
 export default Input;

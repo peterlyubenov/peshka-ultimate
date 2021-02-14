@@ -9,20 +9,32 @@ import { ReactComponent as ChevronDown } from "../../assets/icons/chevron-down.s
 const InputNumber = ({ inputProps, initialValue, min, max, ...props }) => {
   const [value, setValue] = useState(initialValue);
 
-  const increment = (step) => () => {
-    let newValue = value + step;
-
-    if (newValue < min) {
-      newValue = min;
-    } else if (newValue > max) {
-      newValue = max;
+  const clipValueToRange = (value) => {
+    if (value < min) {
+      return min;
+    } else if (value > max) {
+      return max;
     }
-    setValue(newValue);
+
+    return value;
+  };
+
+  const increment = (step) => () => {
+    setValue(clipValueToRange(value + step));
+  };
+
+  const handleChange = (event) => {
+    setValue(clipValueToRange(Number(event)));
   };
 
   return (
     <div className="input-number" {...props}>
-      <Input {...inputProps} value={value} type="number" />
+      <Input
+        {...inputProps}
+        value={value}
+        onValueChange={handleChange}
+        type="number"
+      />
       <div className="buttons">
         <div onClick={increment(1)} className={value === max ? "disabled" : ""}>
           <ChevronUp />
