@@ -1,0 +1,27 @@
+@import "../../assets/variables";
+
+.search {
+  position: absolute;
+
+  .icon {
+    width: 2em;
+    z-index: 999;
+    position: absolute;
+    top: 14px;
+    left: 1em;
+    svg {
+      fill: var(--textColor);
+    }
+  }
+
+  input {
+    width: 100px;
+    padding-left: 70px;
+    transition: 0.3s;
+    display: block;
+
+    &:focus {
+      width: 100%;
+    }
+  }
+}
