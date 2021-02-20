@@ -6,12 +6,14 @@ import lightTheme from "./themes/light.theme";
 import darkTheme from "./themes/dark.theme";
 
 import ThemeSwitch from "./components/theme-switch/theme-switch.component";
+import Home from "./pages/home/home.component";
 
 import "./App.css";
+import { Link, Route, Switch } from "react-router-dom";
 
-function App({ theme }) {
+function App({ settings }) {
   let appTheme;
-  switch (theme) {
+  switch (settings.theme) {
     case "light":
       appTheme = lightTheme;
       break;
@@ -25,15 +27,21 @@ function App({ theme }) {
   return (
     <ThemeSwitcher theme={appTheme}>
       <div className="App">
-        {theme}
-        <ThemeSwitch />
+        {settings.theme} <Link to="/">Home </Link>
+        <Link to="/settings">Settings</Link>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/settings">
+            <ThemeSwitch />
+          </Route>
+        </Switch>
       </div>
     </ThemeSwitcher>
   );
 }
 
 const mapStateToProps = (state) => ({
-  theme: state.theme.theme,
+  settings: state.settings,
 });
 
 export default connect(mapStateToProps)(App);

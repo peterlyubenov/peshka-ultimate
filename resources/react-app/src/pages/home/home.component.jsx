@@ -1,11 +1,18 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import "./home.styles.scss";
 
-const Home = () => (
+const Home = ({ settings }) => {
+  return (
     <div className="home">
-        <h1>Hello wrodl</h1>
+      <h1>Hello wrodl</h1>
     </div>
-);
+  );
+};
 
-export default Home;
+const mapStateToProps = (state) => ({
+  settings: state.settings,
+});
+
+export default connect(mapStateToProps)(Home);

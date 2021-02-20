@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import themeReducer from "./theme/theme.reducer";
+import settingsReducer from "./settings/settings.reducer";
 
 const persistConfig = {
   key: "root",
@@ -11,7 +11,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  theme: themeReducer,
+  settings: settingsReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);
