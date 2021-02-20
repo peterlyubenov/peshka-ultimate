@@ -1,4 +1,5 @@
 const light = {
+  backgroundColor: "#ececec",
   componentBackgroundColor: "#f8f8f8",
   componentBackgroundColorHover: "#eeeeee",
   textColor: "#292929",

@@ -1,20 +1,22 @@
 import React from "react";
 import ThemeSwitcher from "react-css-vars";
+import { connect } from "react-redux";
 
-const lightTheme = {
-    textColor: "#131313",
-};
+import lightTheme from "./themes/light.theme";
+import darkTheme from "./themes/dark.theme";
 
-const darkTheme = {
-    textColor: "#f3f3f3",
-};
+import "./App.css";
 
-function App() {
-    return (
-        <ThemeSwitcher theme={lightTheme}>
-            <div className="App"></div>
-        </ThemeSwitcher>
-    );
+function App({ theme }) {
+  return (
+    <ThemeSwitcher theme={darkTheme}>
+      <div className="App">{theme}</div>
+    </ThemeSwitcher>
+  );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  theme: state.theme.theme,
+});
+
+export default connect(mapStateToProps)(App);
