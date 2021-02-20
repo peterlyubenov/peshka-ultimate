@@ -7,7 +7,7 @@ import settingsReducer from "./settings/settings.reducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["theme"],
+  whitelist: ["settings"],
 };
 
 const rootReducer = combineReducers({

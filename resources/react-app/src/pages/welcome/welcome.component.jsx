@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
+import SettingsActionTypes from "../../redux/settings/settings.types";
 import Logo from "../../components/logo/logo.component";
 import Button from "../../components/button/button.comonent";
 import InputGroup from "../../components/input-group/input-group.component";
@@ -11,6 +13,27 @@ import ThemeSwitch from "../../components/theme-switch/theme-switch.component";
 import "./welcome.styles.scss";
 
 class Welcome extends React.Component {
+  state = {
+    group: 1,
+    year: 1,
+    major: "",
+  };
+
+  handleChange = (event) => {
+    const { value, name } = event.target;
+    this.setState({ [name]: value });
+  };
+
+  handleIncrement = (name) => (value) => {
+    this.setState({ [name]: value });
+  };
+
+  handleSubmit = () => {
+    this.props.updateStudentInfo(this.state);
+
+    this.props.history.push("/");
+  };
+
   render() {
     return (
       <div className="welcome">
@@ -32,19 +55,28 @@ class Welcome extends React.Component {
           </Container>
           <Container className="main">
             <InputGroup label="Специалност">
-              <Input
-                onValueChange={(a) => {
-                  console.log(a);
-                }}
-                value="aaa"
-              ></Input>
+              <Input onChange={this.handleChange} name="major"></Input>
             </InputGroup>
             <div className="number-inputs">
               <InputGroup label="Курс">
-                <InputNumber initialValue={1} min={1} max={4}></InputNumber>
+                <InputNumber
+                  onChange={this.handleChange}
+                  onIncrement={this.handleIncrement("year")}
+                  initialValue={1}
+                  min={1}
+                  max={4}
+                  inputProps={{ name: "year" }}
+                ></InputNumber>
               </InputGroup>
               <InputGroup label="Лаб. група">
-                <InputNumber initialValue={1} min={1} max={10}></InputNumber>
+                <InputNumber
+                  onChange={this.handleChange}
+                  onIncrement={this.handleIncrement("group")}
+                  initialValue={1}
+                  min={1}
+                  max={10}
+                  inputProps={{ name: "group" }}
+                ></InputNumber>
               </InputGroup>
             </div>
             <InputGroup label="Тема">
@@ -52,7 +84,7 @@ class Welcome extends React.Component {
             </InputGroup>
           </Container>
           <Container className="continue">
-            <Button>Към програмата</Button>
+            <Button onClick={this.handleSubmit}>Към програмата</Button>
           </Container>
         </div>
       </div>
@@ -64,4 +96,12 @@ const mapStateToProps = (state) => ({
   theme: state.settings.theme,
 });
 
-export default connect(mapStateToProps)(Welcome);
+const mapDispatchToProps = (dispatch) => ({
+  updateStudentInfo: (payload) =>
+    dispatch({ type: SettingsActionTypes.UPDATE_STUDENT_INFO, payload }),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Welcome));

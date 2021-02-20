@@ -14,6 +14,11 @@ const settingsReducer = (state = INITIAL_STATE, action) => {
         ...state,
         theme: action.payload,
       };
+    case SettingsActionTypes.UPDATE_STUDENT_INFO:
+      return {
+        ...state,
+        ...action.payload,
+      };
     default:
       return state;
   }
