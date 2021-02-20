@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
 
 import ThemeButton from "../theme-button/theme-button.component";
+import ThemeActionTypes from "../../redux/theme/theme.types";
 import "./theme-switch.styles.scss";
 
-const ThemeSwitch = ({ defaultTheme, onChange }) => {
-  const [activeTheme, setActiveTheme] = useState(defaultTheme);
-
+const ThemeSwitch = ({ theme, switchTheme }) => {
   const handleClick = (newActiveTheme) => () => {
-    setActiveTheme(newActiveTheme);
-
-    onChange(newActiveTheme);
+    switchTheme(newActiveTheme);
   };
 
   return (
@@ -17,15 +15,24 @@ const ThemeSwitch = ({ defaultTheme, onChange }) => {
       <ThemeButton
         onClick={handleClick("light")}
         light
-        active={activeTheme === "light"}
+        active={theme === "light"}
       />
       <ThemeButton
         onClick={handleClick("dark")}
         dark
-        active={activeTheme === "dark"}
+        active={theme === "dark"}
       />
     </div>
   );
 };
 
-export default ThemeSwitch;
+const mapStateToProps = (state) => ({
+  theme: state.theme.theme,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  switchTheme: (theme) =>
+    dispatch({ type: ThemeActionTypes.SWITCH_THEME, payload: theme }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ThemeSwitch);

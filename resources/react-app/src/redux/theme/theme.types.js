@@ -1,5 +1,5 @@
 const ThemeActionTypes = {
-  TOGGLE_THEME: "TOGGLE_THEME",
+  SWITCH_THEME: "SWITCH_THEME",
 };
 
 export default ThemeActionTypes;

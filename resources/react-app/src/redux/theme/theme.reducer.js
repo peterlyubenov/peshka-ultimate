@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 
 const themeReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case ThemeActionTypes.TOGGLE_THEME:
+    case ThemeActionTypes.SWITCH_THEME:
       return {
         ...state,
         theme: action.payload,
