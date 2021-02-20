@@ -5,11 +5,9 @@ import { connect } from "react-redux";
 import lightTheme from "./themes/light.theme";
 import darkTheme from "./themes/dark.theme";
 
-import ThemeSwitch from "./components/theme-switch/theme-switch.component";
-import Home from "./pages/home/home.component";
+import Routes from "./routes/main.routes";
 
 import "./App.css";
-import { Link, Route, Switch } from "react-router-dom";
 
 function App({ settings }) {
   let appTheme;
@@ -27,14 +25,7 @@ function App({ settings }) {
   return (
     <ThemeSwitcher theme={appTheme}>
       <div className="App">
-        {settings.theme} <Link to="/">Home </Link>
-        <Link to="/settings">Settings</Link>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/settings">
-            <ThemeSwitch />
-          </Route>
-        </Switch>
+        <Routes />
       </div>
     </ThemeSwitcher>
   );
