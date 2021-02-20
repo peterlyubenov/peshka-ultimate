@@ -1,6 +1,7 @@
 .input-number {
   display: inline-block;
   width: 10em;
+  max-height: 5em;
 
   input {
     &::-webkit-outer-spin-button,
@@ -17,11 +18,12 @@
       fill: var(--textColor);
     }
     cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 7em;
+    position: relative;
+    top: -4.5em;
+    left: 6.5em;
     padding: 1.4em;
     user-select: none;
+    max-width: 1em;
 
     .disabled svg {
       fill: var(--textColorLight);

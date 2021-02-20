@@ -1,0 +1,13 @@
+@import "../../assets/variables";
+
+.input-group {
+  .label {
+    color: var(--textColor);
+    font-size: 16px;
+    text-shadow: $shadow;
+  }
+
+  .input-element {
+    height: 5em;
+  }
+}

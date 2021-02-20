@@ -1,0 +1,45 @@
+@import "../../assets/variables";
+
+.welcome {
+  .background-image {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+
+  .page {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 1em;
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+
+    .number-inputs {
+      display: flex;
+      justify-content: flex-start;
+
+      padding: 2em 0 1em 0;
+
+      .input-number {
+        padding-right: 2em;
+      }
+    }
+
+    .continue {
+      margin-bottom: 2em;
+    }
+  }
+}

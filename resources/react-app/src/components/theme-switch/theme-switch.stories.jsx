@@ -1,8 +1,14 @@
 import React from "react";
+import { Provider } from "react-redux";
+import { store } from "../../redux/store";
 
 import ThemeSwitch from "./theme-switch.component";
 
-const template = () => <ThemeSwitch />;
+const template = () => (
+  <Provider store={store}>
+    <ThemeSwitch />
+  </Provider>
+);
 
 export const Default = template.bind({});
 Default.args = {};

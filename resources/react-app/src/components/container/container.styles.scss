@@ -1,0 +1,12 @@
+@import "../../assets/variables";
+
+.container {
+  max-width: 1200px;
+  width: 70%;
+  margin: 0 auto;
+
+  @media screen and (max-width: $mobileScreenSize) {
+    max-width: unset;
+    width: 95%;
+  }
+}

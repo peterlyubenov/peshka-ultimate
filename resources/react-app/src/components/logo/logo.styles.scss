@@ -1,0 +1,13 @@
+@import "../../assets/variables";
+
+@font-face {
+  font-family: "The Font";
+  src: url("../../assets/fonts/theboldfont.ttf");
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "The Font", "Poppins", sans-serif;
+  color: var(--textColor);
+}
