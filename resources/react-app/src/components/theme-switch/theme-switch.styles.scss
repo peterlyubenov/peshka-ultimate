@@ -1,0 +1,10 @@
+@import "../../assets/variables";
+
+.theme-switch {
+  display: flex;
+  justify-content: flex-start;
+
+  .theme-button {
+    margin: 1em;
+  }
+}

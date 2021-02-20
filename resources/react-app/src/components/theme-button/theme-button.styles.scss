@@ -1,0 +1,45 @@
+@import "../../assets/variables";
+
+.theme-button {
+  border-radius: 40px;
+  box-shadow: $shadow;
+  width: 80px;
+  height: 80px;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: border-width 0.2s;
+
+  &.light {
+    background-color: #f0f0f0;
+
+    svg {
+      color: #131313;
+    }
+
+    &.active {
+      border: 5px solid #e2e2e2;
+    }
+  }
+
+  &.dark {
+    background-color: #292929;
+    svg {
+      fill: #e6e6e6;
+    }
+
+    &.active {
+      border: 5px solid #505050;
+    }
+  }
+
+  svg {
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow($shadow);
+  }
+}
