@@ -4,8 +4,11 @@ import { connect } from "react-redux";
 import "./home.styles.scss";
 
 const Home = ({ settings, ...otherProps }) => (
-  <div className="home">
-    <h1>Hello wrodl</h1>
+  <div
+    className="home"
+    style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+  >
+    <span style={{ fontSize: 32, fontWeight: "bold" }}>Success!</span>
   </div>
 );
 

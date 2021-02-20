@@ -28,6 +28,14 @@ class Welcome extends React.Component {
     this.setState({ [name]: value });
   };
 
+  isValid = () => {
+    return (
+      this.state.group.toString().length > 0 &&
+      this.state.year.toString().length > 0 &&
+      this.state.major.length > 0
+    );
+  };
+
   handleSubmit = () => {
     this.props.updateStudentInfo(this.state);
 
@@ -84,7 +92,9 @@ class Welcome extends React.Component {
             </InputGroup>
           </Container>
           <Container className="continue">
-            <Button onClick={this.handleSubmit}>Към програмата</Button>
+            <Button disabled={!this.isValid()} onClick={this.handleSubmit}>
+              Към програмата
+            </Button>
           </Container>
         </div>
       </div>
