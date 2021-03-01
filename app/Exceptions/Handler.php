@@ -2,8 +2,10 @@
 
 namespace App\Exceptions;
 
+use ErrorException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Exception;
 
 class Handler extends ExceptionHandler
 {
@@ -33,6 +35,10 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
+        // $this->reportable(function(ErrorException $e) {
+        //     abort(404);
+        // });
+        
         $this->reportable(function (Throwable $e) {
             //
         });

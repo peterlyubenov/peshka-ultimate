@@ -10,17 +10,6 @@ use App\Models\Faculty;
 class FacultyController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $faculties = Faculty::paginate(10);
-        return view('admin.faculties.index')->with('faculties', $faculties);
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -58,7 +47,7 @@ class FacultyController extends Controller
     public function show($id)
     {
         $faculty = Faculty::find($id);
-        $majors = $faculty->majors();
+        $majors = $faculty->majors;
 
         return view('admin.faculties.show')->with('faculty', $faculty)->with('majors', $majors);
     }
@@ -71,7 +60,7 @@ class FacultyController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.faculties.edit')->with('faculty', Faculty::find($id));
     }
 
     /**
@@ -83,7 +72,20 @@ class FacultyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $valid = $request->validate([
+            'title' => 'required|max:255'
+        ]);
+
+        $faculty = Faculty::find($id);
+        $faculty->title = $valid['title'];
+        $faculty->save();
+
+        return redirect()->route('faculties.show', $id);
+    }
+
+    public function delete($id) 
+    {
+        return view('admin.faculties.delete')->with('faculty', Faculty::find($id));
     }
 
     /**
@@ -94,6 +96,8 @@ class FacultyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Faculty::find($id)->delete();
+
+        return redirect()->route('faculties.index');
     }
 }

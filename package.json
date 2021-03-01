@@ -40,12 +40,14 @@
     ]
   },
   "devDependencies": {
+    "@babel/helper-builder-react-jsx": "^7.12.13",
     "@storybook/addon-actions": "^6.1.17",
     "@storybook/addon-essentials": "^6.1.17",
     "@storybook/addon-links": "^6.1.17",
     "@storybook/node-logger": "^6.1.17",
     "@storybook/preset-create-react-app": "^3.1.5",
     "@storybook/react": "^6.1.17",
+    "axios": "^0.21.1",
     "file-loader": "^6.2.0"
   }
 }

@@ -6,7 +6,7 @@
 
 <div class="card my-4">
   <div class="card-header">
-      <h4 class="card-title">Факултети</h4>
+      <h4 class="card-title">Моля изберете факултет</h4>
   </div>
   <div class="card-body">
     @foreach($faculties as $faculty)

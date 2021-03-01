@@ -9,12 +9,6 @@
 </li>
 <li class="nav-item {{ $active == 'faculties' ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('faculties.index') }}">
-        <i class="nc-icon nc-bank"></i>
-        <p>Факултети</p>
-    </a>
-</li>
-<li class="nav-item {{ $active == 'schedules' ? 'active' : '' }}">
-    <a class="nav-link" href="./user.html">
         <i class="nc-icon nc-single-copy-04"></i>
         <p>Графици</p>
     </a>
