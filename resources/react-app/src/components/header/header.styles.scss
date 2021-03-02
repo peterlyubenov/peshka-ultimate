@@ -1,0 +1,15 @@
+@import "../../assets/variables";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 2em;
+
+  width: 70%;
+  margin: 0 auto;
+  box-sizing: border-box;
+
+  @media screen and (max-width: $mobileScreenSize) {
+    width: 95%;
+  }
+}

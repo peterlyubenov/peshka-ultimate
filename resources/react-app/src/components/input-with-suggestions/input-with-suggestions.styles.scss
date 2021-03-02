@@ -1,0 +1,51 @@
+@import "../../assets/variables";
+
+.input-with-suggestions {
+  .suggestions {
+    background-color: var(--componentBackgroundColor);
+    border: none;
+    border-radius: 3em;
+    box-sizing: border-box;
+    box-shadow: $shadow;
+    padding: 1em 0;
+    outline: none;
+    color: var(--textColor);
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 1em;
+    position: absolute;
+    overflow: hidden;
+
+    opacity: 0;
+    z-index: -1;
+    transform: translateY(-50px);
+    transition: 0.3s;
+
+    &.active {
+      opacity: 1;
+      transform: none;
+      z-index: 1000;
+    }
+
+    .suggestion {
+      padding: 1em 2em;
+      border-bottom: 1px solid var(--componentBackgroundColorHover);
+      color: $blue;
+      cursor: pointer;
+
+      transition: background-color 0.3s;
+
+      &.selected {
+        background-color: var(--componentBackgroundColorHover);
+      }
+
+      &:hover {
+        background-color: var(--componentBackgroundColorHover);
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}

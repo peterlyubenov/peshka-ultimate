@@ -2,11 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
+import WithBackground from "../../components/with-background/with-background.component";
 import SettingsActionTypes from "../../redux/settings/settings.types";
 import Logo from "../../components/logo/logo.component";
 import Button from "../../components/button/button.comonent";
 import InputGroup from "../../components/input-group/input-group.component";
-import Input from "../../components/input/input.component";
+import InputWithSuggestions from "../../components/input-with-suggestions/input-with-suggestions.component";
 import InputNumber from "../../components/input-number/input-number.component";
 import Container from "../../components/container/container.component";
 import ThemeSwitch from "../../components/theme-switch/theme-switch.component";
@@ -29,6 +30,11 @@ class Welcome extends React.Component {
   };
 
   isValid = () => {
+    console.log({
+      group: this.state.group.toString().length,
+      year: this.state.year.toString().length,
+      major: this.state.major.length,
+    });
     return (
       this.state.group.toString().length > 0 &&
       this.state.year.toString().length > 0 &&
@@ -45,58 +51,52 @@ class Welcome extends React.Component {
   render() {
     return (
       <div className="welcome">
-        <div className="background-image">
-          {this.props.theme === "light" ? (
-            <img src={require("../../assets/images/hero-bg.jpg")}></img>
-          ) : (
-            ""
-          )}
-          {this.props.theme === "dark" ? (
-            <img src={require("../../assets/images/hero-bg-dark.jpg")}></img>
-          ) : (
-            ""
-          )}
-        </div>
-        <div className="page">
-          <Container className="header">
+        <WithBackground theme={this.props.theme}>
+          <Container>
             <Logo />
           </Container>
-          <Container className="main">
-            <InputGroup label="Специалност">
-              <Input onChange={this.handleChange} name="major"></Input>
-            </InputGroup>
-            <div className="number-inputs">
-              <InputGroup label="Курс">
-                <InputNumber
+          <form onSubmit={this.handleSubmit}>
+            <Container className="main">
+              <InputGroup label="Специалност">
+                <InputWithSuggestions
+                  apiEndpoint="http://localhost:8000/api/majors_suggestions"
                   onChange={this.handleChange}
-                  onIncrement={this.handleIncrement("year")}
-                  initialValue={1}
-                  min={1}
-                  max={4}
-                  inputProps={{ name: "year" }}
-                ></InputNumber>
+                  name="major"
+                ></InputWithSuggestions>
               </InputGroup>
-              <InputGroup label="Лаб. група">
-                <InputNumber
-                  onChange={this.handleChange}
-                  onIncrement={this.handleIncrement("group")}
-                  initialValue={1}
-                  min={1}
-                  max={10}
-                  inputProps={{ name: "group" }}
-                ></InputNumber>
+              <div className="number-inputs">
+                <InputGroup label="Курс">
+                  <InputNumber
+                    onChange={this.handleChange}
+                    onIncrement={this.handleIncrement("year")}
+                    initialValue={1}
+                    min={1}
+                    max={4}
+                    inputProps={{ name: "year" }}
+                  ></InputNumber>
+                </InputGroup>
+                <InputGroup label="Лаб. група">
+                  <InputNumber
+                    onChange={this.handleChange}
+                    onIncrement={this.handleIncrement("group")}
+                    initialValue={1}
+                    min={1}
+                    max={10}
+                    inputProps={{ name: "group" }}
+                  ></InputNumber>
+                </InputGroup>
+              </div>
+              <InputGroup label="Тема">
+                <ThemeSwitch></ThemeSwitch>
               </InputGroup>
-            </div>
-            <InputGroup label="Тема">
-              <ThemeSwitch></ThemeSwitch>
-            </InputGroup>
-          </Container>
-          <Container className="continue">
-            <Button disabled={!this.isValid()} onClick={this.handleSubmit}>
-              Към програмата
-            </Button>
-          </Container>
-        </div>
+            </Container>
+            <Container className="continue" style={{ marginTop: "3em" }}>
+              <Button disabled={!this.isValid()} onClick={this.handleSubmit}>
+                Към програмата
+              </Button>
+            </Container>
+          </form>
+        </WithBackground>
       </div>
     );
   }

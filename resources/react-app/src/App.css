@@ -1,7 +1,20 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+
 .App {
   background-color: var(--backgroundColor);
   min-height: 100vh;
   width: 100vw;
 
   color: var(--textColor);
+}
+
+a {
+  text-decoration: none;
+}
+
+.react-toast-notifications__toast {
+  background-color: var(--componentBackgroundColor) !important;
+  color: var(--textColor) !important;
 }

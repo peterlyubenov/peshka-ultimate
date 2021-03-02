@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/schedule', [App\Http\Controllers\API\SchedulesAPIController::class, 'schedule']);
+Route::get('/majors_suggestions', [App\Http\Controllers\API\SchedulesAPIController::class, 'search_majors']);

@@ -1,0 +1,18 @@
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .spinner {
+    font-size: 64px;
+    animation: loading 1s infinite;
+  }
+}

@@ -27,21 +27,29 @@ class InputNumber extends React.Component {
         value: this.clipValueToRange(this.state.value + step),
       },
       () => {
-        this.props.onIncrement(this.state.value);
+        if (
+          this.props.onIncrement &&
+          this.props.onIncrement instanceof Function
+        )
+          this.props.onIncrement(this.state.value);
       }
     );
   };
 
   handleChange = (event) => {
     if (event.target.value.length === 0) {
-      this.setState({ value: "" }, this.props.onIncrement(this.state.value));
+      this.setState({ value: "" });
     } else {
       this.setState(
         {
           value: this.clipValueToRange(Number(event.target.value)),
         },
         () => {
-          this.props.onIncrement(this.state.value);
+          if (
+            this.props.onIncrement &&
+            this.props.onIncrement instanceof Function
+          )
+            this.props.onIncrement(this.state.value);
         }
       );
     }
