@@ -20,7 +20,6 @@ class SchedulesAPIController extends Controller
                 ['schedules.year', '=', $request->input('year')]
             ])
             ->get(["users.name", "schedule_subjects.group", "schedule_subjects.week", "schedule_subjects.room", "schedule_subjects.subject", "schedule_subjects.time", "schedule_subjects.weekDay"]);
-
         return [
             "result" => $schedule,
         ];

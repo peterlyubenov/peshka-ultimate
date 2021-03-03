@@ -3,16 +3,20 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { withToastManager } from "react-toast-notifications";
 
+import Container from "../../components/container/container.component";
 import Spinner from "../../components/spinner/spinner.component";
 import NextSubject from "../../components/next-subject/next-subject.component";
 import WithBackground from "../../components/with-background/with-background.component";
 import Header from "../../components/header/header.component";
+import Button from "../../components/button/button.comonent";
+import ScheduleNotFound from "../../components/schedule-not-found/schedule-not-found.component";
 
 import "./home.styles.scss";
 
 class Home extends React.Component {
   state = {
     schedule: null,
+    notFound: false,
   };
 
   componentDidMount() {
@@ -22,12 +26,28 @@ class Home extends React.Component {
         year: this.props.settings.year,
       },
     }).then((response) => {
-      this.setState({ schedule: response.data.result });
+      if (response.data.result.length > 0) {
+        this.setState({ schedule: response.data.result });
+      } else {
+        this.setState({ notFound: true });
+      }
     });
 
-    this.props.toastManager.add("Hello world", {
-      appearance: "info",
-    });
+    const title = (
+      <span style={{ fontWeight: "bold" }}>Доц. д-р Златко Върбанов</span>
+    );
+    const content = "Ще закъснея 15 мин";
+
+    this.props.toastManager.removeAll();
+
+    this.props.toastManager.add(
+      <div>
+        {title}: {content}
+      </div>,
+      {
+        appearance: "info",
+      }
+    );
   }
 
   render() {
@@ -40,17 +60,23 @@ class Home extends React.Component {
               settings={this.props.settings}
               schedule={this.state.schedule}
             />
+          ) : this.state.notFound ? (
+            <ScheduleNotFound settings={this.props.settings} />
           ) : (
             <Spinner style={{ height: "50vh" }} />
           )}
         </WithBackground>
-        <div style={{ position: "absolute", top: "100vh" }}>
-          <span>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima
-            labore vero dicta sed, molestiae cum voluptatem placeat earum.
-            Repellendus, ab.
-          </span>
-        </div>
+        <Container>
+          <div style={{ margin: "3em 0" }}>
+            <Button
+              onClick={() => {
+                localStorage.clear();
+              }}
+            >
+              Clear localStorage
+            </Button>
+          </div>
+        </Container>
       </div>
     );
   }

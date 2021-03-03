@@ -1,0 +1,58 @@
+@import "../../assets/variables";
+.settings {
+  .with-background {
+    height: auto;
+  }
+
+  .header {
+    width: 100%;
+    padding: 2em 0;
+  }
+
+  .heading {
+    font-family: "Segoe UI", sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+
+    @media screen and (max-width: $mobileScreenSize) {
+      text-align: center;
+    }
+  }
+
+  .content {
+    form {
+      padding: 1em;
+      min-height: 95vh;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
+    }
+
+    .number-inputs {
+      display: flex;
+      justify-content: flex-start;
+
+      padding: 2em 0 1em 0;
+
+      .input-number {
+        padding-right: 2em;
+      }
+    }
+
+    .continue {
+      margin-bottom: 2em;
+    }
+  }
+
+  .back-link {
+    font-weight: bold;
+    margin-left: 2em;
+    @media screen and (max-width: $mobileScreenSize) {
+      display: block;
+      text-align: center;
+      margin-left: 0;
+      margin-top: 1em;
+    }
+  }
+}

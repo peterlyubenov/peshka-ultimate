@@ -14,9 +14,13 @@ class InputWithSuggestions extends React.Component {
   };
 
   componentDidMount() {
-    axios(this.props.apiEndpoint).then((response) => {
-      this.setState({ allMajors: response.data });
-    });
+    if (this.props.value) {
+      this.setState({ value: this.props.value }, () => {
+        axios(this.props.apiEndpoint).then((response) => {
+          this.setState({ allMajors: response.data });
+        });
+      });
+    }
   }
 
   dispatchChangeEvent = () => {
@@ -121,7 +125,7 @@ class InputWithSuggestions extends React.Component {
           value={this.state.value}
           onChange={this.handleChange}
           name={this.props.name}
-          autocomplete="off"
+          autoComplete="off"
         ></Input>{" "}
         <div
           className={`suggestions ${
